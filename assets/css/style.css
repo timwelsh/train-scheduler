@@ -1,0 +1,17 @@
+.container {
+    border: 0.5px solid #C0C0C0;
+    border-radius: 10px;
+}
+
+.header {
+    border: none;	
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+.employee-info {
+    font-weight: bold;
+    border-bottom: 1px solid #343a40;
+}

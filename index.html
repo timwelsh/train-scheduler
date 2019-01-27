@@ -1,61 +1,102 @@
 <!doctype html>
 <html>
     <head>
-        <title>Train Scheduler</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
-        <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         
-        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
-        <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAHRKPi0VUxfrIYRcERwudayB2eqAOiZBQ",
-            authDomain: "trains-adf68.firebaseapp.com",
-            databaseURL: "https://trains-adf68.firebaseio.com",
-            projectId: "trains-adf68",
-            storageBucket: "trains-adf68.appspot.com",
-            messagingSenderId: "267982629708"
-        };
-        firebase.initializeApp(config);
-        </script>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <title>Train Activity</title>
     </head>
+
     <body>
-        <!-- Container for header -->
-        <div class="container"> 
-            <div class="row">
-                <div class="col-md-2">
+        <header>
+            <div class="jumbotron jumbotron-fluid text-light bg-dark">
+                <div class="container header center-text">
+                    <h1 class="display-4">Anytime is Train Time</h1>
+                    <p class="lead">Choo Choo</p>
                 </div>
-                <div class="col-md-8 text-center">
-                    <h1>Train Scheduler</h1>
-                </div>
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-12"><hr></div>
             </div>
-        </div>   
-
+        </header>
         <div class="container">
-            <div class="row"> 
-                <div class="col-md-2"></div>
-                <div class="col-md-8"> 
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-12"><hr></div>
-                <div class="col-md-12">
-
+            <div class="card-header">
+            Current Train Schedule
+            </div>
+            <div class="card-body train-schedule">
+                <div class="row">
+                    <div class="col-md">
+                    Train Name
+                    </div>
+                    <div class="col-md">
+                    Destination
+                    </div>
+                    <div class="col-md">
+                    Frequency (min)
+                    </div>
+                    <div class="col-md">
+                    Next Arrival
+                    </div>
+                    <div class="col-md">
+                    Minutes Away
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-
+            <div class="card-body train">
+                <div class="row">
+                    <!-- Train Name -->
+                    <div class="col-md" id="train-display"></div>
+                    
+                    <!-- Destination -->
+                    <div class="col-md" id="destination-display"></div>
+                    
+                    <!-- Frequency -->
+                    <div class="col-md" id="freq-display"></div>
+                    <!-- Next Arrival -->
+                    <div class="col-md" id = "next-display"></div>
+                    <!-- Minutes Away -->
+                    <div class="col-md" id="min-display"></div>
+                    
                 </div>
             </div>
-        </div> <!-- close container -->
-
-        
-        <script src="assets/javascript/app.js"></script>
+        </div>
+        <br>
+        <div class="container">
+            <form>
+                <div class="card-header">
+                Add Train
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Train Name</label>
+                    <input type="text" class="form-control" id="train-input" placeholder="Train First">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Destination</label>
+                    <input type="text" class="form-control" id="destination-input" placeholder="Destination">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">First Train Time (hh:mm) </label>
+                    <input type="text" class="form-control" id="train-time-input" placeholder="First Train Start Time">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Frequency (min)</label>
+                    <input type="text" class="form-control" id="frequency-input" placeholder="Frequency in minutes">
+                </div>
+                <button id="add-train" type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
     </body>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
+
 </html>
