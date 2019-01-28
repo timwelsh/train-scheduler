@@ -19,17 +19,18 @@ $( document ).ready(function() {
     var trainTime;
     var freq;
 
-
     database.ref().on("child_added", function(snapshot) {
 
         train = snapshot.val().train;
         destination = snapshot.val().destination;
-        trainTime = snapshot.val().train-time;
+        trainTime = snapshot.val().trainTime;
         freq = snapshot.val().freq;
 
-        formattedDate = moment(startDate).format("X")
-        console.log(formattedDate)
-        months = moment().diff(moment(formattedDate, "X"), "months")
+        formattedTime = (moment(trainTime, 'hh:mm').format("x") / 60000)
+        fromNow = (moment.now() / 60000)
+        // minutesRemaining = formattedTime + (freq )
+        console.log(formattedTime + " here " + trainTime + " from now " + fromNow)
+        months = moment().diff(moment(formattedTime, "x"), "months")
         // billed = months * rate
 
         $("#train-display").append(train + "<br />");
@@ -37,7 +38,6 @@ $( document ).ready(function() {
         $("#freq-display").append(freq + "<br />");
         $("#trainTime-display").append(trainTime + "<br />");
         $("#next-display").append(months + "<br />");
-    
     
     // }, function(errorObject) {
     // console.log("Error: " + errorObject.code);
