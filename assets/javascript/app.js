@@ -38,9 +38,9 @@ $( document ).ready(function() {
         $("#trainTime-display").append(trainTime + "<br />");
         $("#next-display").append(months + "<br />");
     
-        
-    }, function(errorObject) {
-    console.log("Error: " + errorObject.code);
+    
+    // }, function(errorObject) {
+    // console.log("Error: " + errorObject.code);
     });
 
     $('#add-train').click(function(event) {
