@@ -31,6 +31,8 @@ $( document ).ready(function() {
         // minutesRemaining = formattedTime + (freq )
         console.log(formattedTime + " here " + trainTime + " from now " + fromNow)
         months = moment().diff(moment(formattedTime, "x"), "months")
+        calcDuration = freq * 60000;  // take frequency in minutes and multiple to get the unix number for minutes in milliseconds
+        
         // billed = months * rate
 
         $("#train-display").append(train + "<br />");
