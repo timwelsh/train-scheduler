@@ -18,6 +18,7 @@ $( document ).ready(function() {
     var destination;
     var trainTime;
     var freq;
+    var newTime;
 
     database.ref().on("child_added", function(snapshot) {
 
@@ -25,12 +26,16 @@ $( document ).ready(function() {
         destination = snapshot.val().destination;
         trainTime = snapshot.val().trainTime;
         freq = snapshot.val().freq;
+        now = moment.now();
         formattedFirstTime = moment(trainTime, 'hh:mm').format("x")
         interval = freq * 60000;  // take frequency in minutes and multiple to get the unix number for minutes in milliseconds
-        minAway = moment.duration(interval).humanize()
-        // moment.duration(416000).humanize();
+        newTime = now - formattedFirstTime + interval
+        minAway = moment.duration(newTime).humanize()
         console.log(formattedFirstTime + " formattedFirstTime " + trainTime)
-        // formattedTime + 
+        // while(now > formattedFirstTime) {
+        //     var newTime = formattedFirstTime + interval
+        // }
+        //
         $('#next-display').text(formattedFirstTime)
         $('#min-display').text(minAway)
         // while(moment.now() < (formattedFirstTime + interval)) {
