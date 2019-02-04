@@ -1,3 +1,7 @@
+body{
+    background-color: #bbbbbb;
+    padding: 10px;
+}
 .container {
     border: 0.5px solid #C0C0C0;
     border-radius: 10px;
@@ -7,11 +11,24 @@
     border: none;	
 }
 
-.jumbotron {
+.jumbotron{
     text-align: center;
+	background-image: url('..//images/Zephyr.jpg');
+	background-size: cover;
+    background-repeat: no-repeat;
+    height: 350px;
+    font-family: 'Merriweather', serif;
+    -webkit-text-fill-color: black;
+} 
+
+.card-header {
+    font-weight: bold;
+    border-bottom: 1px solid #283148;
+    background-color: #283148;
+    color: azure;
 }
 
-.employee-info {
-    font-weight: bold;
-    border-bottom: 1px solid #343a40;
+.card-body {
+    background-color: azure;
 }
+

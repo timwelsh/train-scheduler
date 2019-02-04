@@ -6,7 +6,7 @@
         
         <!-- Custom CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
-
+        <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
         <title>Train Activity</title>
     </head>
 
@@ -14,14 +14,14 @@
         <header>
             <div class="jumbotron jumbotron-fluid text-light bg-dark">
                 <div class="container header center-text">
-                    <h1 class="display-4">Anytime is Train Time</h1>
-                    <p class="lead">Choo Choo</p>
+                    <h1 class="display-2">Zephyr Train Time</h1>
+                    <h4 class="lead">Schedule a time with the one and only California Zephyr</h4>
                 </div>
             </div>
         </header>
         <div class="container">
             <div class="card-header">
-            Current Train Schedule
+            Current Zephyr Schedule
             </div>
             <div class="card-body train-schedule">
                 <div class="row">
@@ -64,25 +64,25 @@
         <div class="container">
             <form>
                 <div class="card-header">
-                Add Train
+                Add New Zephyr Time
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Train Name</label>
-                    <input type="text" class="form-control" id="train-input" placeholder="Train First">
+                    <label for="formGroupExampleInput" class="font-weight-bold">Train Name</label>
+                    <input type="text" class="form-control" id="train-input" placeholder="Zephyr Name">
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput2">Destination</label>
+                    <label for="formGroupExampleInput2" class="font-weight-bold">Destination</label>
                     <input type="text" class="form-control" id="destination-input" placeholder="Destination">
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput">First Train Time (hh:mm) </label>
+                    <label for="formGroupExampleInput" class="font-weight-bold">First Train Time (hh:mm) </label>
                     <input type="text" class="form-control" id="train-time-input" placeholder="First Train Start Time">
                 </div>
                 <div class="form-group">
-                    <label for="formGroupExampleInput2">Frequency (min)</label>
+                    <label for="formGroupExampleInput2" class="font-weight-bold">Frequency (min)</label>
                     <input type="text" class="form-control" id="freq-input" placeholder="Frequency in minutes">
                 </div>
-                <button id="add-train" type="submit" class="btn btn-dark">Submit</button>
+                <button id="add-train" type="submit" class="btn btn-dark">Add New Zephyr</button>
             </form>
         </div>
     </body>

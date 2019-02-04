@@ -27,53 +27,23 @@ $( document ).ready(function() {
         trainTime = snapshot.val().trainTime;
         freq = snapshot.val().freq;
         now = moment.now();
-        formattedFirstTime = moment(trainTime, 'hh:mm').format("x")
-        interval = freq * 60000;  // take frequency in minutes and multiple to get the unix number for minutes in milliseconds
-        newTime = now - formattedFirstTime + interval
-        minAway = moment.duration(newTime).humanize()
-        console.log(formattedFirstTime + " formattedFirstTime " + trainTime)
-        // while(now > formattedFirstTime) {
-        //     var newTime = formattedFirstTime + interval
-        // }
-        //
-        $('#next-display').text(formattedFirstTime)
-        $('#min-display').text(minAway)
-        // while(moment.now() < (formattedFirstTime + interval)) {
-        //     $('#next-display').text(moment.now())  //.text(duration.hours()+ 'h:' + duration.minutes()+ 'm:');
-        // } 
-        //     // add another freq to the start time
-        //     $('#next-display').text(moment.now())
-        // }
-        // formattedTime = (moment(trainTime, 'hh:mm').format("x") / 60000)
-        // fromNow = (moment.now() / 60000)
-        // minutesRemaining = formattedTime + (freq )
-        // console.log(formattedTime + " here " + trainTime + " from now " + fromNow)
-        // console.log(calcDuration + " calc Duration " + freq)
-        
-        // var convertedTrainTime = '1366549200';
-        // var currentTime = '1366547400';
-        // var leftTime = eventTime - currentTime;//Now i am passing the left time from controller itself which handles timezone stuff (UTC), just to simply question i used harcoded values.
-        // var duration = moment.duration(leftTime, 'seconds');
-        // var interval = calcDuration;
-    
-        // setInterval(function(){
-        //   // Time Out check
-        //   if (duration.asSeconds() <= 0) {
-        //     clearInterval(intervalId);
-        //     // window.location.reload(true); //#skip the cache and reload the page from the server
-        //   }
 
-        //   //Otherwise
-        //   duration = moment.duration(duration.asSeconds() - 1, 'seconds');
-        //   $('#next-display').text(duration.hours()+ 'h:' + duration.minutes()+ 'm:');
-        // }, interval);
-
+        var tFrequency = freq;
+        var firstTime = trainTime;
+        var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+        var currentTime = moment();
+        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        var tRemainder = diffTime % tFrequency;
+        var tMinutesTillTrain = tFrequency - tRemainder;
+        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+        // console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
         $("#train-display").append(train + "<br />");
         $("#destination-display").append(destination + "<br />");
         $("#freq-display").append(freq + "<br />");
         $("#trainTime-display").append(trainTime + "<br />");
-        // $("#next-display").append(months + "<br />");
+        $('#next-display').text(moment(nextTrain).format("hh:mm"))
+        $('#min-display').text(tMinutesTillTrain)
     
     // }, function(errorObject) {
     // console.log("Error: " + errorObject.code);
